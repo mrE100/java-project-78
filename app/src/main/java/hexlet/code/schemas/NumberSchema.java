@@ -10,20 +10,27 @@ public class NumberSchema extends BaseSchema{
         return this;
     }
 
+
+    @Override
     public boolean isValid(Object data) {
-        if (!super.isValid(data)) {
+        if (super.isValid(data)) {
             if (data instanceof Integer) {
                 int currentData = (Integer) data;
                 if (isRange) {
                     return (currentData >= start && currentData <= finish) ? true : false;
-                } else if (isPositive) {
+                }
+                if (isPositive) {
                     return (currentData > 0) ? true : false;
                 }
                 return true;
             }
+            if (!super.isRequired()) {
+                return true;
+            }
             return false;
         }
-        return true;
+
+        return false;
     }
 
     public void range (int start, int finish) {
@@ -32,7 +39,8 @@ public class NumberSchema extends BaseSchema{
         this.isRange = true;
     }
 
-    public void positive() {
+    public NumberSchema positive() {
         this.isPositive = true;
+        return this;
     }
 }

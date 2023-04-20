@@ -30,7 +30,8 @@ public class StringTest {
     @Order(2)
     public void testStringSchemaAfterRequired() {
         stringSchema.required();
-        StringSchemaTestNullWhenRequire();
+        StringSchemaTestNullWhenRequired();
+        StringSchemaTestEmptyAfterRequired();
         StringSchemaTestString();
         StringSchemaTestInt();
     }
@@ -44,7 +45,7 @@ public class StringTest {
         StringSchemaIsValidAfterContains();
     }
 
-    private void StringSchemaTestNullWhenRequire() {
+    private void StringSchemaTestNullWhenRequired() {
         assertFalse(stringSchema.isValid(null));
     }
 
@@ -54,6 +55,10 @@ public class StringTest {
 
     private void StringSchemaTestEmpty() {
         assertTrue(stringSchema.isValid(""));
+    }
+
+    private void StringSchemaTestEmptyAfterRequired() {
+        assertFalse(stringSchema.isValid(""));
     }
 
     private void StringSchemaTestString() {

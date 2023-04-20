@@ -66,7 +66,7 @@ public class NumberTest {
     }
 
     private void NumberSchemaTestPositive2() {
-        assertFalse(numberSchema.isValid(-15));
+        assertFalse(numberSchema.isValid(-5));
     }
 
     private void NumberSchemaTestPositive3() {
