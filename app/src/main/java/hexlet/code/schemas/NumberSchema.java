@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class NumberSchema extends BaseSchema {
+public final class NumberSchema extends BaseSchema {
 
     public NumberSchema required() {
         addChecks("required", value -> value instanceof Integer);
@@ -8,8 +8,8 @@ public class NumberSchema extends BaseSchema {
     }
 
     public NumberSchema positive() {
-        addChecks("positive", value -> value == null ||
-                (value instanceof Integer && (int) value > 0));
+        addChecks("positive", value -> value == null
+                || (value instanceof Integer && (int) value > 0));
         return this;
     }
 

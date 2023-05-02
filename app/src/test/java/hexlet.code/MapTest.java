@@ -1,7 +1,13 @@
 package hexlet.code;
 
 import hexlet.code.schemas.MapSchema;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
+
 
 import java.util.HashMap;
 
@@ -15,7 +21,7 @@ public class MapTest {
     @BeforeAll
     public static void beforeAll() {
         Validator val = new Validator();
-         mapSchema = val.map();
+        mapSchema = val.map();
     }
 
     @Test

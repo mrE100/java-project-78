@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NumberTest {
@@ -22,86 +23,86 @@ public class NumberTest {
     @Test
     @Order(1)
     public void testNumberSchemaBeforeRequired() {
-        NumberSchemaTestNullBeforeRequired();
+        numberSchemaTestNullBeforeRequired();
     }
 
     @Test
     @Order(2)
     public void testNumberSchemaAfterRequired() {
         numberSchema.required();
-        NumberSchemaTestNullAfterRequired();
-        NumberSchemaTestIsNumber();
-        NumberSchemaTestIsNumber2();
-        NumberSchemaTestIsNumberNotPositive();
+        numberSchemaTestNullAfterRequired();
+        numberSchemaTestIsNumber();
+        numberSchemaTestIsNumber2();
+        numberSchemaTestIsNumberNotPositive();
         numberSchema.positive();
-        NumberSchemaTestPositive1();
-        NumberSchemaTestPositive2();
-        NumberSchemaTestPositive3();
-        NumberSchemaTestPositive3();
-        NumberSchemaTestPositive4();
+        numberSchemaTestPositive1();
+        numberSchemaTestPositive2();
+        numberSchemaTestPositive3();
+        numberSchemaTestPositive3();
+        numberSchemaTestPositive4();
     }
 
     @Test
     @Order(3)
     public void testNumberSchemaInRange() {
         numberSchema.range(5, 25);
-        NumberSchemaTestInRange1();
-        NumberSchemaTestInRange2();
-        NumberSchemaTestInRange3();
-        NumberSchemaTestInRange4();
-        NumberSchemaTestInRange5();
+        numberSchemaTestInRange1();
+        numberSchemaTestInRange2();
+        numberSchemaTestInRange3();
+        numberSchemaTestInRange4();
+        numberSchemaTestInRange5();
 
     }
 
-    private void NumberSchemaTestNullBeforeRequired() {
+    private void numberSchemaTestNullBeforeRequired() {
         assertTrue(numberSchema.isValid(null));
     }
 
-    private void NumberSchemaTestNullAfterRequired() {
+    private void numberSchemaTestNullAfterRequired() {
         assertFalse(numberSchema.isValid(null));
     }
 
-    private void NumberSchemaTestPositive1() {
+    private void numberSchemaTestPositive1() {
         assertTrue(numberSchema.isValid(5));
     }
 
-    private void NumberSchemaTestPositive2() {
+    private void numberSchemaTestPositive2() {
         assertFalse(numberSchema.isValid(-5));
     }
 
-    private void NumberSchemaTestPositive3() {
+    private void numberSchemaTestPositive3() {
         assertFalse(numberSchema.isValid(null));
     }
-    private void NumberSchemaTestPositive4() {
+    private void numberSchemaTestPositive4() {
         assertFalse(numberSchema.isValid(0));
     }
 
-    private void NumberSchemaTestInRange1() {
+    private void numberSchemaTestInRange1() {
         assertTrue(numberSchema.isValid(5));
     }
-    private void NumberSchemaTestInRange2() {
+    private void numberSchemaTestInRange2() {
         assertTrue(numberSchema.isValid(25));
     }
-    private void NumberSchemaTestInRange3() {
+    private void numberSchemaTestInRange3() {
         assertFalse(numberSchema.isValid(50));
     }
-    private void NumberSchemaTestInRange4() {
+    private void numberSchemaTestInRange4() {
         assertFalse(numberSchema.isValid(4));
     }
 
-    private void NumberSchemaTestInRange5() {
+    private void numberSchemaTestInRange5() {
         assertTrue(numberSchema.isValid(14));
     }
 
-    private void NumberSchemaTestIsNumber() {
+    private void numberSchemaTestIsNumber() {
         assertFalse(numberSchema.isValid("14"));
     }
 
-    private void NumberSchemaTestIsNumber2() {
+    private void numberSchemaTestIsNumber2() {
         assertFalse(numberSchema.isValid(14.5));
     }
 
-    private void NumberSchemaTestIsNumberNotPositive() {
+    private void numberSchemaTestIsNumberNotPositive() {
         assertTrue(numberSchema.isValid(-5));
     }
 }

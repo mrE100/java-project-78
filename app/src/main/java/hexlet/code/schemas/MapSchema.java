@@ -2,9 +2,9 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public class MapSchema extends BaseSchema {
+public final class MapSchema extends BaseSchema {
     public MapSchema required() {
-        addChecks("required", value -> value instanceof Map<?,?>);
+        addChecks("required", value -> value instanceof Map<?, ?>);
         return this;
     }
 

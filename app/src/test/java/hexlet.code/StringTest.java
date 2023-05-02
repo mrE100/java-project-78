@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StringTest {
@@ -22,68 +24,68 @@ public class StringTest {
     @Test
     @Order(1)
     public void testStringSchemaBeforeRequired() {
-        StringSchemaTestNull();
-        StringSchemaTestEmpty();
+        stringSchemaTestNull();
+        stringSchemaTestEmpty();
     }
 
     @Test
     @Order(2)
     public void testStringSchemaAfterRequired() {
         stringSchema.required();
-        StringSchemaTestNullWhenRequired();
-        StringSchemaTestEmptyAfterRequired();
-        StringSchemaTestString();
-        StringSchemaTestInt();
+        stringSchemaTestNullWhenRequired();
+        stringSchemaTestEmptyAfterRequired();
+        stringSchemaTestString();
+        stringSchemaTestInt();
     }
 
     @Test
     @Order(3)
     public void testStringSchemaContains() {
-        StringSchemaTestContains1();
-        StringSchemaTestContains2();
-        StringSchemaTestContains3();
-        StringSchemaIsValidAfterContains();
+        stringSchemaTestContains1();
+        stringSchemaTestContains2();
+        stringSchemaTestContains3();
+        stringSchemaIsValidAfterContains();
     }
 
-    private void StringSchemaTestNullWhenRequired() {
+    private void stringSchemaTestNullWhenRequired() {
         assertFalse(stringSchema.isValid(null));
     }
 
-    private void StringSchemaTestNull() {
+    private void stringSchemaTestNull() {
         assertTrue(stringSchema.isValid(null));
     }
 
-    private void StringSchemaTestEmpty() {
+    private void stringSchemaTestEmpty() {
         assertTrue(stringSchema.isValid(""));
     }
 
-    private void StringSchemaTestEmptyAfterRequired() {
+    private void stringSchemaTestEmptyAfterRequired() {
         assertFalse(stringSchema.isValid(""));
     }
 
-    private void StringSchemaTestString() {
+    private void stringSchemaTestString() {
         assertTrue(stringSchema.isValid("what does the fox say"));
     }
 
-    private void StringSchemaTestInt() {
+    private void stringSchemaTestInt() {
         assertFalse(stringSchema.isValid(7));
     }
 
-    private void StringSchemaTestContains1() {
+    private void stringSchemaTestContains1() {
         stringSchema.contains("wh");
         assertTrue(stringSchema.isValid("what does the fox say"));
     }
 
-    private void StringSchemaTestContains2() {
+    private void stringSchemaTestContains2() {
         stringSchema.contains("what");
         assertTrue(stringSchema.isValid("what does the fox say"));
     }
-    private void StringSchemaTestContains3() {
+    private void stringSchemaTestContains3() {
         stringSchema.contains("whatthe");
         assertFalse(stringSchema.isValid("what does the fox say"));
     }
 
-    private void StringSchemaIsValidAfterContains() {
+    private void stringSchemaIsValidAfterContains() {
         assertFalse(stringSchema.isValid("what does the fox say"));
     }
 
